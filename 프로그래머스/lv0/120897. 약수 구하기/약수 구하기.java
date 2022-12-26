@@ -11,12 +11,6 @@ class Solution {
             }
         }
         
-        int[] answer = new int[divisor.size()];
-        
-        for(int i=0; i<divisor.size(); i++) {
-            answer[i] = divisor.get(i);
-        }
-        
-        return answer;
+        return divisor.stream().mapToInt(x -> x).toArray();
     }
 }
