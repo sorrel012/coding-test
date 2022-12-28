@@ -1,13 +1,9 @@
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Arrays;
 
 class Solution {
     public String solution(String my_string) {        
-        my_string = my_string.toLowerCase();
-        
-        String answer = Stream.of(my_string.split(""))
-                    .sorted()
-                    .collect(Collectors.joining());
-        return answer;
+        char[] ch = my_string.toLowerCase().toCharArray();
+        Arrays.sort(ch);
+        return new String(ch);
     }
 }
