@@ -1,13 +1,17 @@
+import java.util.Arrays;
+
 class Solution {
     public int solution(String before, String after) {
-        int answer = 1;
+        int answer = 0;
         
-        for(int i = 0; i < before.length(); i++) {
-            char ch = before.charAt(i);
-            if(before.chars().filter(c -> c == ch).count() != 
-              after.chars().filter(c -> c == ch).count()) {
-                answer = 0;
-            }
+        char[] b = before.toCharArray();
+        char[] a = after.toCharArray();
+        
+        Arrays.sort(b);
+        Arrays.sort(a);
+    
+        if(new String(a).equals(new String(b))) {
+            answer = 1;
         }
         
         return answer;
