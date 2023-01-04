@@ -16,9 +16,7 @@ class Solution {
         
         String[] answer = new String[subStr.size()];
         
-        for(int i=0; i<subStr.size(); i++) {
-        	answer[i] = subStr.get(i);
-        }
+        answer = subStr.stream().map(s -> s).toArray(String[]::new);
         
         return answer;
     }
