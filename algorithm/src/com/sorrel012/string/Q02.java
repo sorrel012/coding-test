@@ -21,7 +21,7 @@ public class Q02 {
 		
 		for(char c:str.toCharArray()) {
 			
-			if(c >= 'a' && c <= 'z') {
+			if(Character.isLowerCase(c)) {
 				answer += Character.toUpperCase(c);
 				
 			} else {
