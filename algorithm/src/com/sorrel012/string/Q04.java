@@ -11,12 +11,18 @@ public class Q04 {
 		Scanner scan = new Scanner(System.in);
 		
 		int num = scan.nextInt();
-		scan.skip("\r\n");
+		scan.nextLine();
+		
+		String[] words = new String[num];
 		
 		for(int i = 0; i < num; i++) {
-			String str = scan.nextLine();
-			System.out.print(t.solution(str));
+			words[i] = scan.nextLine();
 		}
+		
+		for(String str:words) {
+			System.out.println(t.solution(str));
+		}
+		
 
 	} //main
 
@@ -24,9 +30,7 @@ public class Q04 {
 		
 		String answer = "";
 		
-		for(int i = str.length() - 1; i >= 0 ; i--) {
-			answer += str.charAt(i);
-		}
+		answer = new StringBuilder(str).reverse().toString();
 		
 		return answer;
 	}
