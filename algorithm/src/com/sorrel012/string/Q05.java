@@ -23,23 +23,25 @@ public class Q05 {
 		int lt = 0;
 		int rt = inputArr.length - 1;
 		
-		while(lt <= rt) {
+		while(lt < rt) {
 			
-			if( (inputArr[lt] >= 'a' && inputArr[lt] <= 'z' || inputArr[lt] >= 'A' && inputArr[lt] <= 'Z')
-					&& (inputArr[rt] >= 'a' && inputArr[rt] <= 'z' || inputArr[rt] >= 'A' && inputArr[rt] <= 'Z') ) {
-				
+			if( !Character.isAlphabetic(inputArr[lt]) ) {
+				lt++;
+
+			} else if( !Character.isAlphabetic(inputArr[rt]) ) {
+				rt--;
+
+			} else {
 				char tmp = inputArr[lt];
 				inputArr[lt] = inputArr[rt];
 				inputArr[rt] = tmp;
 				
+				lt++;
+				rt--;
 			}
-			
-			lt++;
-			rt--;
-			
 		}
 		
-		return new String(inputArr);
+		return String.valueOf(inputArr);
 	}
 	
 }
