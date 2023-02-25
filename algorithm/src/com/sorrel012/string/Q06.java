@@ -10,7 +10,11 @@ public class Q06 {
 		
 		for(int i = 0; i < input.length(); i++) {
 			
-			if(!answer.contains(input.charAt(i)+"")) {
+//			if(!answer.contains(input.charAt(i)+"")) {
+//				answer += input.charAt(i);
+//			}
+			
+			if(input.indexOf(input.charAt(i)) == i) {
 				answer += input.charAt(i);
 			}
 			
