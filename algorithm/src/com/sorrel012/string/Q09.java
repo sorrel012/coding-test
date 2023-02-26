@@ -9,9 +9,7 @@ public class Q09 {
 		int answer = 0;
 		String num = "";
 		
-		for(int i = 0; i < input.length(); i++) {
-			
-			char c = input.charAt(i);
+		for(char c : input.toCharArray()) {
 			
 			if (Character.isDigit(c)) {
 				num += c;
