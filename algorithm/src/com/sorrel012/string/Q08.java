@@ -6,27 +6,11 @@ public class Q08 {
 
 	private String solution(String input) {
 		
-		String originStr = "";
-		String reverseStr = "";
+		input = input.toUpperCase().replaceAll("[^A-Z]", ""); //알파벳 대문자가 아닌 것은 제거
 		
-		for(int i = 0; i < input.length(); i++) {
-			char c = input.charAt(i);
-			
-			if(Character.isAlphabetic(c)) {
-				originStr += c;
-			}
-			
-		}
+		String tmp = new StringBuilder(input).reverse().toString(); // StringBuilder로 reverse한 후 다시 String으로 변환
 		
-		for(int i = input.length()-1; i >= 0 ; i--) {
-			char c = input.charAt(i);
-
-			if(Character.isAlphabetic(c)) {
-				reverseStr += c;
-			}
-		}
-		
-		if(originStr.equalsIgnoreCase(reverseStr)) {
+		if(input.equals(tmp)) {
 			return "YES";
 		}
 		
