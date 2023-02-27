@@ -1,8 +1,12 @@
 # ✏ 코딩테스트 준비
 
+<br/>
+
 ## 🖥 백준 허브 
 - 백준, 프로그래머스 풀이를 자동으로 올림.
 - https://chrome.google.com/webstore/detail/%EB%B0%B1%EC%A4%80%ED%97%88%EB%B8%8Cbaekjoonhub/ccammcjdkpgjmcpijpahlehmapgmphmk?hl=ko
+
+<br/>
 
 ### ✔ 알고리즘
 - String
@@ -24,6 +28,8 @@
 - Greedy
 
 - dynamic programming
+
+<br/>
 
 ### ✔GIT
 - remote
