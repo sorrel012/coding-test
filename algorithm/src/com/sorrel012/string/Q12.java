@@ -9,19 +9,15 @@ public class Q12 {
 		String answer = "";
 		
 		str = str.replace("#", "1").replace("*", "0");
-
-		int[] bin = new int[count];
 		
 		for(int i = 0; i < count; i++) {
 			
 			String tmp = str.substring(i*7, i*7+7);
 			
-			bin[i] = Integer.parseInt(tmp, 2);
+			int num = Integer.parseInt(tmp, 2);
 			
-		}
-		
-		for(int i : bin) {
-			answer += (char)i;
+			answer += (char)num;
+			
 		}
 		
 		return answer;
