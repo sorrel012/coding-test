@@ -27,7 +27,7 @@ public class Q11 {
 				for(int j = 0; j < count; j++) {
 					tmp += c;
 				}
-				str = str.replace(tmp, c+String.valueOf(count));
+				str = str.replaceFirst(tmp, c+String.valueOf(count));
 			}
 			
 		}
