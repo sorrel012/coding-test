@@ -1,21 +1,24 @@
 package com.sorrel012.array;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Q01 {
 	
-	private String solution(int[] nums) {
+	private ArrayList<Integer> solution(int[] nums) {
 		
-		String answer = String.valueOf(nums[0]) + " ";
+		ArrayList<Integer> answer = new ArrayList<Integer>();
+		
+		answer.add(nums[0]);
 		
 		for(int i = 1; i < nums.length; i++) {
 			
 			if(nums[i] > nums[i-1]) {
-				answer = new StringBuilder(answer).append(String.valueOf(nums[i])).append(" ").toString();
+				answer.add(nums[i]);
 			}
 			
 		}
-		return answer.trim();
+		return answer;
 		
 	}
 	
@@ -33,7 +36,9 @@ public class Q01 {
 			nums[i] = scan.nextInt();
 		}
 		
-		System.out.print(t.solution(nums));
+		for(int i : t.solution(nums)) {
+			System.out.print(i + " ");
+		}
 
 	} //main
 	
