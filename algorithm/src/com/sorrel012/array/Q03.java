@@ -10,49 +10,16 @@ public class Q03 {
 		
 		for(int i = 0; i < a.length; i++) {
 			
-			if(a[i] == 1) {
+			if(a[i] == b[i]) {
+				answer[i] = "D";
 				
-				switch (b[i]) {
-				case 1 :
-					answer[i] = "D";
-					break;
-				case 2 :
-					answer[i] = "B";
-					break;
-				case 3 :
-					answer[i] = "A";
-					break;
-				}
-				
-			} else if(a[i] == 2) {
-				
-				switch (b[i]) {
-				case 1 :
-					answer[i] = "A";
-					break;
-				case 2 :
-					answer[i] = "D";
-					break;
-				case 3 :
-					answer[i] = "B";
-					break;
-				}
+			} else if( (a[i] == 1 && b[i] == 3) || (a[i] == 2 && b[i] == 1) || (a[i] == 3 && b[i] == 2) ) {
+				answer[i] = "A";
 				
 			} else {
-				
-				switch (b[i]) {
-				case 1 :
-					answer[i] = "B";
-					break;
-				case 2 :
-					answer[i] = "A";
-					break;
-				case 3 :
-					answer[i] = "D";
-					break;
-				}
-				
+				answer[i] = "B";
 			}
+			
 		}
 				
 		return answer;
