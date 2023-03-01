@@ -10,14 +10,32 @@ public class Q02 {
 		
 		for(int i = 0; i < a.length; i++) {
 			
-			if(a[i] == 1 || a[i] == 2) {
+			if(a[i] == 1) {
 				
-				if(a[i] > b[i]) {
-					answer[i] = "A";
-				} else if(a[i] < b[i]) {
-					answer[i] = "B";
-				} else {
+				switch (b[i]) {
+				case 1 :
 					answer[i] = "D";
+					break;
+				case 2 :
+					answer[i] = "B";
+					break;
+				case 3 :
+					answer[i] = "A";
+					break;
+				}
+				
+			} else if(a[i] == 2) {
+				
+				switch (b[i]) {
+				case 1 :
+					answer[i] = "A";
+					break;
+				case 2 :
+					answer[i] = "D";
+					break;
+				case 3 :
+					answer[i] = "B";
+					break;
 				}
 				
 			} else {
