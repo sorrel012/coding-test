@@ -4,23 +4,40 @@ import java.util.Scanner;
 
 public class Q02 {
 	
-	private int solution(int[] nums) {
+	private String[] solution(int[] a, int[] b) {
 		
-		int answer = 1;
+		String[] answer = new String[a.length];
 		
-		int tmp = nums[0];
-		
-		for(int i = 1; i < nums.length; i++) {
+		for(int i = 0; i < a.length; i++) {
 			
-			if(nums[i] > tmp) {
-				answer++;
-				tmp = nums[i];
+			if(a[i] == 1 || a[i] == 2) {
+				
+				if(a[i] > b[i]) {
+					answer[i] = "A";
+				} else if(a[i] < b[i]) {
+					answer[i] = "B";
+				} else {
+					answer[i] = "D";
+				}
+				
+			} else {
+				
+				switch (b[i]) {
+				case 1 :
+					answer[i] = "B";
+					break;
+				case 2 :
+					answer[i] = "A";
+					break;
+				case 3 :
+					answer[i] = "D";
+					break;
+				}
+				
 			}
-			
 		}
-		
+				
 		return answer;
-		
 	}
 	
 	public static void main(String[] args) {
@@ -31,13 +48,20 @@ public class Q02 {
 		
 		int count = scan.nextInt();
 		
-		int[] nums = new int[count];
+		int[] a = new int[count];
+		int[] b = new int[count];
 		
 		for(int i = 0; i < count; i++) {
-			nums[i] = scan.nextInt();
+			a[i] = scan.nextInt();
 		}
 		
-		System.out.println(t.solution(nums));
+		for(int i = 0; i < count; i++) {
+			b[i] = scan.nextInt();
+		}
+		
+		for(String str : t.solution(a, b)) {
+			System.out.println(str);
+		}
 
 	} //main
 	
