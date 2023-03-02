@@ -17,29 +17,21 @@ public class Q05 {
 	} //main
 
 	private int solution(int num) {
-		int answer = 1;
 		
-		for(int i = 3; i <= num; i++) {
-			if(isPrime(i)) {
+		int answer = 2;
+		
+		int[] ch = new int[num+1];
+		
+		for(int i = 2; i <= num; i++) {
+			if(ch[i] == 0) {
 				answer++;
+				for(int j = i; j <=num; j = j+i) {
+					ch[j] = 1;
+				}
 			}
 		}
+		
 		return answer;
 	}
-
-	private boolean isPrime(int i) {
-
-		boolean prime = true;
-
-		for(int j = 2; j < i; j++) {
-
-			if(i % j == 0) {
-				prime = false;
-				break;
-			}
-		}
-
-		return prime;
-	}
-
+	
 }
