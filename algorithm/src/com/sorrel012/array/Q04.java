@@ -12,24 +12,24 @@ public class Q04 {
 		
 		int num = scan.nextInt();
 		
-		for(int i : t.solution(num)) {
-			System.out.print(i + " ");
-		}
+		t.solution(num);
 
 	} //main
 
-	private int[] solution(int num) {
+	private void solution(int num) {
 		
-		int[] answer = new int[num];
+		int a = 1;
+		int b = 1;
+		int c;
 		
-		answer[0] = 1;
-		answer[1] = 1;
+		System.out.print(a + " " + b + " ");
 		
-		for(int i = 1; i < num-1; i++) {
-			answer[i+1] = answer[i] + answer[i-1];
+		for(int i = 2; i < num; i++) {
+			c = a + b;
+			System.out.print(c + " ");
+			a = b;
+			b = c;
 		}
-		
-		return answer;
 	}
 	
 }
