@@ -10,22 +10,22 @@ public class Q05 {
 
 		Scanner scan = new Scanner(System.in);
 
-		int num = scan.nextInt();
+		int n = scan.nextInt();
 
-		System.out.println(t.solution(num));
+		System.out.println(t.solution(n));
 
 	} //main
 
-	private int solution(int num) {
+	private int solution(int n) {
 		
-		int answer = 2;
+		int answer = 0;
 		
-		int[] ch = new int[num+1];
+		int[] ch = new int[n+1];
 		
-		for(int i = 2; i <= num; i++) {
+		for(int i = 2; i <= n; i++) {
 			if(ch[i] == 0) {
 				answer++;
-				for(int j = i; j <=num; j = j+i) {
+				for(int j = i; j <=n; j = j+i) {
 					ch[j] = 1;
 				}
 			}
