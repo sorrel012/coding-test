@@ -22,22 +22,16 @@ public class Q07 {
 		
 		int answer = 0;
 		int count = 0;
-		int[] scores = new int[n];
 		
 		for(int i = 0; i < n; i++) {
 			
 			if(nums[i].equals("1")) {
 				count++;
-				scores[i] = count;
+				answer += count;
 			} else {
-				scores[i] = 0;
 				count = 0;
 			}
 			
-		}
-		
-		for(int i : scores) {
-			answer += i;
 		}
 		
 		return answer;
