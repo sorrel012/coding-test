@@ -25,7 +25,7 @@ public class Q08 {
 		int[] answer = new int[n];
 		
 		for(int i = 0; i < n; i++) {
-			int count = 0;
+			int count = 1;
 			int num1 = Integer.parseInt(nums[i]);
 			
 			for(int j = 0; j < n; j++) {
@@ -36,7 +36,7 @@ public class Q08 {
 				}
 				
 			}
-			answer[i] = count + 1;
+			answer[i] = count;
 			
 		}
 		
