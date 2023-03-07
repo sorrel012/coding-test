@@ -1,6 +1,5 @@
 package com.sorrel012.array;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Q11 {
@@ -13,10 +12,10 @@ public class Q11 {
 
 		int n = scan.nextInt();
 		scan.nextLine();
-		int[][] students = new int[n][n];
+		int[][] students = new int[n+1][6];
 
-		for(int i = 0; i < n; i++) {
-			for(int j = 0; j < n; j++) {
+		for(int i = 1; i <= n; i++) {
+			for(int j = 1; j <= 5; j++) {
 				students[i][j] = scan.nextInt();
 			}
 		}
@@ -27,36 +26,37 @@ public class Q11 {
 
 	private int solution(int n, int[][] students) {
 		
-		ArrayList<Integer> countClass = new ArrayList<Integer>();
+		int[] countClass = new int[n+1];
 		
-		for(int i = 0; i < n; i++) {
+		for(int i = 1; i <= n; i++) {
 			int count = 0;
 			
-			for(int j = 0; j < n; j++) {
+			for(int j = 1; j <= n; j++) {
 				
-				for(int k = 0; k < n; k++) {
-					int standard = students[i][j];
-					int compare = students[k][j];
-					if(standard == compare) {
+				for(int k = 1; k <= 5; k++) {
+					int num1 = students[i][k];
+					int num2 = students[j][k];
+					
+					if(num1 == num2) {
 						count++;
+						break;
 					}
 					
 				}
 				
 			}
-			countClass.add(count);
+			countClass[i] = count;
 		}
 		
 		int max = Integer.MIN_VALUE;
 		int answer = 0;
 		
 		for(int i = 0; i < n; i++) {
-			if(countClass.get(i) > max) {
-				max = countClass.get(i);
-				answer = i+1;
+			if(countClass[i] > max) {
+				max = countClass[i];
+				answer = i;
 			}
 		}
-		System.out.println(countClass);
 		
 		return answer;
 	}
