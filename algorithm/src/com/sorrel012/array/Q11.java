@@ -25,8 +25,9 @@ public class Q11 {
 	} //main
 
 	private int solution(int n, int[][] students) {
-		
-		int[] countClass = new int[n+1];
+
+		int max = Integer.MIN_VALUE;
+		int answer = 0;
 		
 		for(int i = 1; i <= n; i++) {
 			int count = 0;
@@ -45,17 +46,12 @@ public class Q11 {
 				}
 				
 			}
-			countClass[i] = count;
-		}
-		
-		int max = Integer.MIN_VALUE;
-		int answer = 0;
-		
-		for(int i = 0; i < n; i++) {
-			if(countClass[i] > max) {
-				max = countClass[i];
+			
+			if(count > max) {
+				max = count;
 				answer = i;
 			}
+			
 		}
 		
 		return answer;
