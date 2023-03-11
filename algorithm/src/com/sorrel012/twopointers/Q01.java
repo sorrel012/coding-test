@@ -4,28 +4,32 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.StringTokenizer;
 
 public class Q01 {
 	
-	private List<Integer> solution(int count1, int count2, String[] array1, String[] array2) {
+	private ArrayList<Integer> solution(int count1, int count2, ArrayList<Integer> list1, ArrayList<Integer> list2) {
 		
-		List<Integer> answer = new ArrayList<Integer>();
+		ArrayList<Integer> answer = new ArrayList<Integer>();
 		
-		List<String> list1 = Arrays.asList(array1);
-		List<String> list2 = Arrays.asList(array2);
+		int p1 = 0;
+		int p2 = 0;
 		
-		for(String s : list1) {
-			answer.add(Integer.parseInt(s));
+		while(p1 < count1 && p2 < count2) {
+			if(list1.get(p1) < list2.get(p2)) {
+				answer.add(list1.get(p1++));
+			} else {
+				answer.add(list2.get(p2++));
+			}
 		}
 		
-		for(String s : list2) {
-			answer.add(Integer.parseInt(s));
+		while(p1 < count1) {
+			answer.add(list1.get(p1++));
 		}
 		
-		Collections.sort(answer);
+		while(p2 < count2) {
+			answer.add(list2.get(p2++));
+		}
 				
 		return answer;
 		
@@ -38,16 +42,22 @@ public class Q01 {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		int count1 = Integer.parseInt(reader.readLine());
-		String[] array1 = new String[count1];
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
 		
-		array1 = reader.readLine().split(" ");
-		
+		StringTokenizer st = new StringTokenizer(reader.readLine());
+		while(st.hasMoreTokens()) {
+			list1.add(Integer.parseInt(st.nextToken()));
+		}
+
 		int count2 = Integer.parseInt(reader.readLine());
-		String[] array2 = new String[count2];
+		ArrayList<Integer> list2 = new ArrayList<Integer>();
+
+		st = new StringTokenizer(reader.readLine());
+		while(st.hasMoreTokens()) {
+			list2.add(Integer.parseInt(st.nextToken()));
+		}
 		
-		array2 = reader.readLine().split(" ");
-		
-		for(Integer i : t.solution(count1, count2, array1, array2)) {
+		for(Integer i : t.solution(count1, count2, list1, list2)) {
 			System.out.print(i + " ");
 		}
 		
