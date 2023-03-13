@@ -33,20 +33,21 @@ public class Q03 {
 		int p1 = 0; //n개의 수
 		int p2 = 0; //k만큼 더하기
 		
-		int max = Integer.MIN_VALUE;
-		int tmp = 0;
+		int max = 0;
 		
-		while(p1 < n-k) {
+		for(int i = 0; i < k; i++) {
+			max += list.get(i);
+		}
+		
+		int tmp = max;
+		
+		for(int i = k; i < n; i++) {
 			
-			tmp += list.get(p2);
-			p2++;
+			tmp += list.get(i);
+			tmp -= list.get(i-k);
 			
-			if(p2 == p1+k) {
-				p2 = ++p1;
-				if(tmp > max) {
-					max = tmp;
-				}
-				tmp = 0;
+			if(tmp > max) {
+				max = tmp;
 			}
 			
 		}
