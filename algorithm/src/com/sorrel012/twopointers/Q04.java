@@ -32,18 +32,22 @@ public class Q04 {
 	private static int solution(int n, int m, ArrayList<Integer> list) {
 		
 		int answer = 0;
+		int sum = 0;
+		int lt = 0;
 		
-		for(int i = 0; i < n; i++) {
+		for(int rt = 0; rt < n; rt++) {
 			
-			int count = 0;
-			count += list.get(i);
+			sum += list.get(rt);
 			
-			for(int j = i+1; j < n && count <= m; j++) {
-				count += list.get(j);
+			if(sum == m) {
+				answer++;
+			}
+			
+			while(sum >= m) {
 				
-				if(count == m) {
+				sum -= list.get(lt++);
+				if(sum == m) {
 					answer++;
-					break;
 				}
 				
 			}
