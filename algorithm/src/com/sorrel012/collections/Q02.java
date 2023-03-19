@@ -17,27 +17,26 @@ public class Q02 {
 		System.out.print(solution(str1, str2));
 		
 	} //main
-
+	
 	private static String solution(String str1, String str2) {
 		
-		String answer = "NO";
+		String answer = "YES";
 		
-		HashMap<Character, Integer> map1 = new HashMap<>();
-		HashMap<Character, Integer> map2 = new HashMap<>();
+		HashMap<Character, Integer> map = new HashMap<>();
 		
 		for(char c : str1.toCharArray()) {
-			map1.put(c, map1.getOrDefault(c, 0)+1);
+			map.put(c, map.getOrDefault(c, 0)+1);
 		}
 		
 		for(char c : str2.toCharArray()) {
-			map2.put(c, map2.getOrDefault(c, 0)+1);
-		}
-		
-		if(map1.equals(map2)) {
-			answer = "YES";
+			if(!map.containsKey(c) || map.get(c) == 0) {
+				return "NO";
+			}
+			map.put(c, map.get(c)-1);
 		}
 		
 		return answer;
+		
 	}
 	
 }
