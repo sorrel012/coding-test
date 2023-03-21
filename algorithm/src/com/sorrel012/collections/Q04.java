@@ -20,34 +20,60 @@ public class Q04 {
 	} //main
 	
 	private static int solution(String s, String t) {
-		
+
 		int answer = 0;
 		char[] arr = s.toCharArray();
 		ArrayList<Character> str = new ArrayList<>();
-		
-		
+
+
 		for(int rt = 0; rt < t.length(); rt++) {
 			str.add(arr[rt]);
 		}
-		
+
 		if(anagram(str.toString(), t)) {
 			answer += 1;
 		}
-		
+
 		for(int rt = t.length(); rt < s.length(); rt++) {
-			
+
 			str.add(arr[rt]);
 			str.remove(0);
-			
+
 			if(anagram(str.toString(), t)) {
 				answer += 1;
 			}
-			
+
 		}
-		
+
 		return answer;
 	}
-	
+//
+//	private static int solution(String s, String t) {
+//
+//		int answer = 0;
+//		int lt = 0;
+//		int rt = t.length()-1;
+//
+//		while(rt < s.length()) {
+//
+//			String txt = "";
+//
+//			for(int i = lt; i <= rt; i++) {
+//				txt += s.charAt(i);
+//			}
+//
+//			lt++;
+//			rt++;
+//
+//			if(anagram(txt, t)) {
+//				answer += 1;
+//			}
+//
+//		}
+//
+//		return answer;
+//	}
+
 	private static boolean anagram(String str, String t) {
 				
 		HashMap<Character, Integer> map = new HashMap<>();
