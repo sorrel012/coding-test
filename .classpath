@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="프로그래머스/lv0/120829. 각도기"/>
+	<classpathentry kind="src" path="프로그래머스/lv0/120830. 양꼬치"/>
+	<classpathentry kind="src" path="프로그래머스/lv0/120848. 팩토리얼"/>
+	<classpathentry kind="src" path="프로그래머스/lv0/120852. 소인수분해"/>
+	<classpathentry kind="src" path="프로그래머스/lv0/120898. 편지"/>
+	<classpathentry kind="src" path="algorithm/src"/>
+	<classpathentry kind="output" path="algorithm/bin"/>
+</classpath>
