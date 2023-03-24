@@ -16,11 +16,11 @@ public class Q02 {
 		System.out.print(solution(str));
 		
 	} //main
-
+	
 	private static String solution(String str) {
-		
+
 		String answer = "";
-				
+
 		Stack<Character> st = new Stack();
 
 		for(char c : str.toCharArray()) {
@@ -34,11 +34,11 @@ public class Q02 {
 			}
 
 		}
-		
-		while(!st.isEmpty()) {
-			answer = st.pop() + answer;
+
+		for(int i = 0; i < st.size(); i++) {
+			answer += st.get(i);
 		}
-		
+
 		return answer;
 	}
 	
