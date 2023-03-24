@@ -21,7 +21,7 @@ public class Q02 {
 		
 		String answer = "";
 				
-		Stack st = new Stack();
+		Stack<Character> st = new Stack();
 
 		for(char c : str.toCharArray()) {
 
@@ -29,7 +29,7 @@ public class Q02 {
 				st.push(c);
 
 			} else {
-				while(!st.isEmpty() && !st.pop().equals('(')) {
+				while(!st.isEmpty() && st.pop() != '(') {
 				}
 			}
 
