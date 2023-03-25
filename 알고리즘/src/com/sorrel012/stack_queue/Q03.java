@@ -70,7 +70,7 @@ public class Q03 {
 				row++;
 			}
 			
-			if(!st.isEmpty() && num == st.get(st.size()-1) ) {
+			if(!st.isEmpty() && num == st.peek()) {
 				answer++;
 				st.pop();
 			} else if(num != 0){
