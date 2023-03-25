@@ -57,17 +57,15 @@ public class Q03 {
 			int column = moves[i]-1;
 			int num = 0;
 			
-			int row = 0;
-			while(true) {
-				if(board[row][column] != 0) {
-					num = board[row][column];
-					board[row][column] = 0;
+			for(int j = 0; j < n; j++) {
+				if(board[j][column] != 0) {
+					num = board[j][column];
+					board[j][column] = 0;
+					break;
+				} else if(j == n-1) {
 					break;
 				}
-				if(row == n-1) {
-					break;
-				}
-				row++;
+				
 			}
 			
 			if(!st.isEmpty() && num == st.peek()) {
