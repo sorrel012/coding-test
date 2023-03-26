@@ -39,19 +39,19 @@ public class Q04 {
 				switch(c) {
 				case '+':
 					result = num1 + num2;
-					st.add(result);
+					st.push(result);
 					break;
 				case '-':
 					result = num1 - num2;
-					st.add(result);
+					st.push(result);
 					break;
 				case '*':
 					result = num1 * num2;
-					st.add(result);
+					st.push(result);
 					break;
 				case '/':
 					result = num1 / num2;
-					st.add(result);
+					st.push(result);
 					break;
 				}
 				
