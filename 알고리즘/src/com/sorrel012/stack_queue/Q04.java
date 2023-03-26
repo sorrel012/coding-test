@@ -26,10 +26,8 @@ public class Q04 {
 		int num1 = 0;
 		int num2 = 0;
 		
-		for(int i = 0; i < postfix.length(); i++) {
-			
-			char c = postfix.charAt(i);
-			
+		for(char c : postfix.toCharArray()) {
+						
 			if(Character.isDigit(c)) {
 				st.add(Integer.parseInt(c+""));
 			} else {
@@ -59,7 +57,7 @@ public class Q04 {
 			
 		}
 
-		return st.peek();
+		return st.get(0);
 	}
 	
 }
