@@ -34,7 +34,7 @@ public class Q05 {
 				answer += st.size();
 			} else if(!st.isEmpty() && str.charAt(i-1) == ')') {
 				st.pop();
-				answer += 1;
+				answer++;
 			}
 
 		}
