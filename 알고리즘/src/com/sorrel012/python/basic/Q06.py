@@ -1,16 +1,18 @@
 n = int(input())
 a = list(map(int, input().split()))
 
-max = -2147000000
-num = 0
-for x in a:
+def digit_sum(x):
     sum = 0
-    tmp = x
     while(x > 0):
         sum += x%10
-        x = int(x/10)
-    if sum > max:
-        max = sum
-        num = tmp
+        x = x//10
+    return sum
         
-print(num)
+max = -2147000000
+for x in a:
+    tot = digit_sum(x)
+    if tot > max:
+        max = tot
+        res = x
+        
+print(res)
