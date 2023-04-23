@@ -2,12 +2,14 @@ n = int(input())
 
 a = list(map(int, input().split()))
 
+
 def reverse(x):
-    txt = ''    
-    for c in str(x):
-        txt = c + txt
-        
-    return int(txt)
+    res = 0
+    while x > 0:
+        t = x % 10
+        res = res * 10 + t
+        x = x // 10
+    return res
     
 def isPrime(x):
     a = [0]*(x+1)
