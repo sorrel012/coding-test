@@ -1,4 +1,4 @@
- package com.sorrel012.string;
+ package com.sorrel012.java.string;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.sorrel012.stack_queue;
+package com.sorrel012.java.stack_queue;
 
 import java.io.BufferedReader;
 import java.io.IOException;

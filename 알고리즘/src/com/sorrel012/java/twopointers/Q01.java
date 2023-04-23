@@ -1,4 +1,4 @@
-package com.sorrel012.twopointers;
+package com.sorrel012.java.twopointers;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.sorrel012.collections;
+package com.sorrel012.java.collections;
 
 import java.io.BufferedReader;
 import java.io.IOException;

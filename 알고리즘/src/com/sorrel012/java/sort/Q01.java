@@ -1,4 +1,4 @@
-package com.sorrel012.sort;
+package com.sorrel012.java.sort;
 
 import java.io.BufferedReader;
 import java.io.IOException;

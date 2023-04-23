@@ -1,4 +1,4 @@
-package com.sorrel012.array;
+package com.sorrel012.java.array;
 
 import java.util.ArrayList;
 import java.util.Scanner;
