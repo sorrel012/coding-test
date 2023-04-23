@@ -12,14 +12,16 @@ def reverse(x):
     return res
     
 def isPrime(x):
-    a = [0]*(x+1)
     
-    for i in range(2, x) :
+    if x == 1:
+        return False
+    
+    for i in range(2, x//2 + 1) :
         if(x%i == 0):
             return False       
                          
     return True
 
 for x in a:
-    if(reverse(x) != 1 & isPrime(reverse(x)) == True):
+    if(isPrime(reverse(x)) == True):
         print(reverse(x), end=' ')
