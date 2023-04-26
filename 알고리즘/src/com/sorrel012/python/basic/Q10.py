@@ -10,6 +10,5 @@ for x in a:
     else :
         cnt += 1
         score += cnt
-    print(x, cnt, score)
     
 print(score)
