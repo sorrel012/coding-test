@@ -1,11 +1,11 @@
 str = input()
-digit = ''
+
+num = 0
 
 for x in str:
-    if(x.isdigit()):
-        digit += x
+    if x.isdigit():
+        num = num*10 + int(x)
         
-num = int(digit)
 
 cnt = 0
 for i in range(1, num+1):
