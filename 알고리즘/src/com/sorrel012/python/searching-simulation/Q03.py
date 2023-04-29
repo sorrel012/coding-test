@@ -1,15 +1,8 @@
-result = list(range(1, 21))
+a = list(range(21))
 
 def reverse(start, end):
-    tmp = [0] * (end-start+1)
-    
-    cnt = 0
-    for i in range(end, start-1, -1):
-        tmp[cnt] = result[i]
-        cnt+=1
-    
-    for i in range(end, start-1, -1):
-        result[i] = tmp[i-start]
+    for i in range((end-start+1)//2):
+        a[start+i], a[end-i] = a[end-i], a[start+i]
         
 for _ in range(10):
     start,end = map(int, input().split())
