@@ -11,7 +11,7 @@ def reverse(start, end):
     for i in range(end, start-1, -1):
         result[i] = tmp[i-start]
         
-for i in range(10):
+for _ in range(10):
     start,end = map(int, input().split())
     reverse(start, end)
     
