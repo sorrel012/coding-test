@@ -2,16 +2,9 @@ grid = []
 
 n = int(input())
 
+a = [list(map(int, input().split())) for _ in range(n)]
 
-for i in range(n):
-    tmp = list(map(int, input().split()))
-    grid.append(tmp)        
-    
-    
 rowSum = 0
-colSum = 0
-diagSum1 = 0
-diagSum2 = 0
 
 for i in range(n):
     rowtmp = 0
@@ -27,9 +20,7 @@ for i in range(n):
         
 for i in range(n):
     diagSum1 += grid[i][i]
-    
-for i in range(n-1, -1, -1):
-    diagSum2 += grid[i][i]
+    diagSum2 += gird[i][n-i-1]
     
 result = []
 
