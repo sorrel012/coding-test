@@ -4,7 +4,7 @@ n = int(input())
 
 a = [list(map(int, input().split())) for _ in range(n)]
 
-rowSum = 0
+largest = 0
 
 for i in range(n):
     rowtmp = 0
@@ -13,22 +13,20 @@ for i in range(n):
         rowtmp += grid[i][j]
         coltmp += grid[j][i]
     
-    if rowtmp > rowSum:
-        rowSum = rowtmp
-    if coltmp > colSum:
-        colSum = coltmp
-        
+    if rowtmp > largest:
+        largest = rowtmp
+    if coltmp > largest:
+        largest = coltmp
+
+diagSum1 = 0        
+diagSum2 = 0        
 for i in range(n):
     diagSum1 += grid[i][i]
     diagSum2 += gird[i][n-i-1]
     
-result = []
+if diagSum1 > largest:
+        largest = diagSum1
+if diagSum2 > largest:
+    largest = diagSum1   
 
-result.append((rowSum))
-result.append((colSum))
-result.append((diagSum1))
-result.append((diagSum1))
-
-result.sort(reverse = True)
-
-print(result[0])
+print(largest)
