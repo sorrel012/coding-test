@@ -1,18 +1,24 @@
 n, m = map(int, input().split())
 a = list(map(int, input().split()))
 
-cnt =  0
-for i in range(n):
-    sum = 0
-    sum += a[i]
-    if sum == m:
-        cnt += 1
-        continue
-    for j in range(i+1, n):
-        sum += a[j]
-        if sum == m:
-            cnt += 1
+lt = 0
+rt = 1
+tot = a[0]
+cnt = 0
+while lt < n:
+    if tot < m:
+        if rt < n:
+            tot += a[rt]
+            rt += 1
+        else :
             break
+    elif tot == m:
+        cnt += 1
+        tot -= a[lt]
+        lt += 1
+    else:
+        tot -= a[lt]
+        lt += 1
         
 print(cnt)
         
