@@ -1,9 +1,9 @@
 n = int(input())
 a = [list(map(int, input().split())) for _ in range(n)]
 
-for i in range(n):
-    a[i].insert(0, 0)
-    a[i].append(0)    
+for x in a:
+    x.insert(0, 0)
+    x.append(0)    
 
 a.insert(0, [0]*(n+2))
 a.append([0]*(n+2))
