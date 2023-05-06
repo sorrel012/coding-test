@@ -1,6 +1,9 @@
 n = int(input())
 a = [list(map(int, input().split())) for _ in range(n)]
 
+dx = [0, 0, -1, 1]
+dy = [1, -1, 0, 0]
+
 for x in a:
     x.insert(0, 0)
     x.append(0)    
@@ -12,7 +15,7 @@ cnt = 0
 
 for i in range(1, n+1):
     for j in range(1, n+1):
-        if (a[i][j] > a[i-1][j]) & (a[i][j] > a[i+1][j]) & (a[i][j] > a[i][j-1]) & (a[i][j] > a[i][j+1]):
+        if all(a[i][j] > a[i+dy[k]][j+dx[k]] for k in range(4)):
             cnt +=1 
             
 print(cnt)
