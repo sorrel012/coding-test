@@ -1,12 +1,16 @@
 n = int(input())
 
-a=[]
+p = dict()
 
 for _ in range(n):
-    a.append(input())
+    word = input()
+    p[word] = 1
 
 for _ in range(n-1):
-    a.remove(input())
+    word = input()
+    p[word] = 0
     
-print(a[0])
-    
+for key, val in p.items():
+    if val == 0:
+        print(key)
+        break
