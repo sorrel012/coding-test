@@ -2,16 +2,11 @@ l = int(input())
 a = list(map(int, input().split()))
 m = int(input())
 
-maxIndex=0
-minIndex=l-1
+a.sort()
+
 for _ in range(m):
-    for i in range(l):
-        if a[i] > a[maxIndex]:
-            maxIndex = i
-        if a[i] < a[minIndex]:
-            minIndex = i
-    a[maxIndex] -= 1
-    a[minIndex] += 1
-    print()
+    a[0]+=1
+    a[l-1]-=1
+    a.sort()
     
-print(max(a) - min(a))
+print(a[l-1]-a[0])
