@@ -1,7 +1,5 @@
-import sys
-
-n = int(sys.stdin.readline())
-a = list(map(int, sys.stdin.readline().split()))
+n = int(input())
+a = list(map(int, input().split()))
 
 cnt = 0
 
