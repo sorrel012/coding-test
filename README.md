@@ -48,4 +48,4 @@
   - git commit -m "메시지 내용"
   
 - push
-  - git push origin main
+  - git push origin main 
