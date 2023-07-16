@@ -1,11 +1,5 @@
-def solution(num_list):    
-    
-    answer = 1
-    
+def solution(num_list):
     if len(num_list) >= 11:
-        answer = sum(num_list)
+        return eval('+'.join(list(map(str, num_list))))
     else:
-        for i in range(len(num_list)):
-            answer *= num_list[i]
-            
-    return answer
+        return eval('*'.join(list(map(str, num_list))))
