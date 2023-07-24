@@ -1,17 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 class Solution {
     public int[] solution(int n, int k) {
       
-      List<Integer> tmp = new ArrayList<Integer>();
-      
-      for (int i=k; i<=n; i+=k) {
-        tmp.add(i);
-      }
-      
-      int[] answer = tmp.stream().mapToInt(x -> x).toArray();
-      
-      return answer;
+      return IntStream.rangeClosed(k, n).filter(x -> x%k == 0).toArray();
     }
 }
