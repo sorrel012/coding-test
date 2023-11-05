@@ -1,8 +1,8 @@
 function solution(numbers) {
     let answer = 0;
-    for (let i=0; i<numbers.length; i++) {
-        answer += numbers[i];
+    for(i of numbers) {
+        answer += i
     }
-    answer = answer / numbers.length;
-    return answer;
+    return answer / numbers.length;
+
 }
