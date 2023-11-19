@@ -9,5 +9,5 @@ function solution(num_list) {
             odd += num;
         }
     }
-    return parseInt(even) + parseInt(odd);
+    return +even + +odd;
 }
