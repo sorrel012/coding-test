@@ -6,8 +6,8 @@ function solution(numLog) {
         '10': 'd',
         '-10': 'a'
     }
-    for(let i = 1; i < numLog.length; i++) {
-        answer += convert[numLog[i]-numLog[i-1]];            
-    }
+    return numLog.slice(1).map((v, i) => {
+        return convert[v - numLog[i]]
+    }).join('')
     return answer;
 }
