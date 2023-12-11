@@ -7,9 +7,7 @@ const rl = readline.createInterface({
 let input = [];
 
 rl.on('line', function (line) {
-    input = line.split('');
+    input = [line]
 }).on('close',function(){
-    input.forEach(char=> {
-        console.log(char);
-    })
+    [...input[0]].forEach(char => console.log(char))
 });
