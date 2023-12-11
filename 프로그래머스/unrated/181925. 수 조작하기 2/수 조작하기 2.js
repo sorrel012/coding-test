@@ -1,22 +1,13 @@
 function solution(numLog) {
     let answer = '';
+    const convert = {
+        '1': 'w',
+        '-1': 's',
+        '10': 'd',
+        '-10': 'a'
+    }
     for(let i = 1; i < numLog.length; i++) {
-        let sub = numLog[i]-numLog[i-1];
-        switch(sub) {
-            case 1:
-                answer += 'w';
-                break;
-            case -1:
-                answer += 's';
-                break;
-            case 10:
-                answer += 'd';
-                break;
-            case -10:
-                answer += 'a'
-                break;
-        }
-            
+        answer += convert[numLog[i]-numLog[i-1]];            
     }
     return answer;
 }
