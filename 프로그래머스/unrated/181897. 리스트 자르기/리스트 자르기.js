@@ -7,10 +7,6 @@ function solution(n, slicer, num_list) {
     } else if(n === 3) {
         return num_list.slice(a, b+1);
     } else {
-        let answer = [];
-        for (let i = a; i <= b; i+=c) {
-            answer.push(num_list[i]);
-        }
-        return answer;
+        return num_list.slice(a, b + 1).filter((_, i) => !(i % c));
     }
 }
