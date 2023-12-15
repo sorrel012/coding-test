@@ -1,20 +1,5 @@
 function solution(arr) {
-    let len = arr.length;
-
-    if (!isSqure(len)) {
-        let power = 1;
-        while (Math.pow(2, power) < len) {
-            power++;
-        }
-
-        let zerosToAdd = Math.pow(2, power) - len;
-        arr = arr.concat(new Array(zerosToAdd).fill(0));
-    }
-
-    return arr;
+  const len = arr.length;
+  const totalLen = 2 ** Math.ceil(Math.log2(len));
+  return [...arr, ...new Array(totalLen - len).fill(0)];
 }
-
-function isSqure(num) {
-    return (num !== 0) && ((num & (num - 1)) === 0);
-}
-
