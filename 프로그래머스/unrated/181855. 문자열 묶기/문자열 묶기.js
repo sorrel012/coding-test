@@ -3,7 +3,5 @@ function solution(strArr) {
     strArr.forEach(value => {
         tmp[value.length - 1] += 1;
     })
-    return tmp.reduce((max, value) => {
-        return max < value ? value : max;
-    }, tmp[0]);
+    return Math.max(...tmp);
 }
