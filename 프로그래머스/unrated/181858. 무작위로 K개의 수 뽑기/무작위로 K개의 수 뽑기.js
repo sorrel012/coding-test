@@ -1,14 +1,4 @@
 function solution(arr, k) {
-    let tmp = new Set(arr);
-    arr = Array.from(tmp);
-    while(arr.length > k) {
-        arr.pop();
-    }    
-    const len = arr.length;
-    if(len < k) {
-        for(let i = 0; i < k - len; i++) {
-            arr.push(-1);
-        }
-    }
-    return arr;
+  const set = new Set(arr);
+  return set.size < k ? [...set, ...Array(k - set.size).fill(-1)] : [...set].slice(0, k);
 }
