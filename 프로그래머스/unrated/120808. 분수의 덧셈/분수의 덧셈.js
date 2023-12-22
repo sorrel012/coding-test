@@ -1,16 +1,11 @@
-function solution(numer1, denom1, numer2, denom2) {
-    const commonDenom = denom1 * denom2;
-    const sumNumer = (numer1 * denom2) + (numer2 * denom1);
-    
-    const getGcd = (a, b) => {
-        while (b !== 0) {
-            let temp = a % b;
-            a = b;
-            b = temp;
-        }
-        return a;
-    }
-    
-    const gcd = getGcd(sumNumer, commonDenom);
-    return [sumNumer/gcd, commonDenom/gcd];
+function fnGCD(a, b){
+    return (a % b)? fnGCD(b, a%b) : b;
+}
+
+function solution(denum1, num1, denum2, num2) {
+    let denum = (denum1 * num2) + (denum2 * num1);
+    let num = num1 * num2;
+    let gcd = fnGCD(denum, num);
+
+    return [denum/gcd, num/gcd];
 }
