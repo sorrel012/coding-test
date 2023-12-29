@@ -1,4 +1,4 @@
 function solution(s) {
-    const regex = /^\d+$/;
-    return (s.length === 4 || s.length === 6) && regex.test(s);
+    const regex = /^\d{6}$|^\d{4}$/;
+    return regex.test(s);
 }
