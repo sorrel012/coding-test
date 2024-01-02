@@ -10,8 +10,7 @@ function solution(s, n) {
             continue;
         }
         
-        let isUpperCase = char === char.toUpperCase();
-        let alphabet = isUpperCase ? upper : lower;
+        let alphabet = upper.includes(char) ? upper : lower;
         let index = (alphabet.indexOf(char) + n) % 26;
         answer += alphabet[index];
     }
