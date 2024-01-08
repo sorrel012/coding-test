@@ -1,15 +1,16 @@
 function solution(k, score) {
-    let answer = [];
-    return score.map((num, i) => {
-        if(i >= k) {
-            if(num > answer[answer.length - 1]) {
-                answer.pop();
-                answer.push(num);
-            }
-        } else {
-            answer.push(num);
+    const stack = []
+    return score.reduce((acc,cur) => {
+        if(stack.length < k) {
+            stack.push(cur)
+            stack.sort((a,b) => a - b)
         }
-        answer.sort((a, b) => b - a);
-        return answer[answer.length-1];
-    })
+        else {
+            stack.push(cur)
+            stack.sort((a,b) => a - b)
+            stack.shift()
+        }
+        acc.push(stack[0])
+        return acc
+    },[])
 }
