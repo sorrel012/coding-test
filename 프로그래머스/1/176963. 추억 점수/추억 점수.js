@@ -3,9 +3,5 @@ function solution(name, yearning, photo) {
     for (let i = 0; i < name.length; i++) {
         score.set(name[i], yearning[i]);
     }
-    return photo.map(row => {
-        return row.reduce((acc, cur) => {
-            return acc + (score.get(cur) || 0);
-        }, 0);
-    })
+    return photo.map(row => row.reduce((acc, cur) => acc + (score.get(cur) || 0), 0));
 }
