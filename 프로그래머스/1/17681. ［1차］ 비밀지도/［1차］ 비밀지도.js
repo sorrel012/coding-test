@@ -1,17 +1,9 @@
 function solution(n, arr1, arr2) {
-    const convertBintoDec = (arr) => arr.map(el => {
-        const binary = el.toString(2);
-        return binary.length < n ? '0'.repeat(n - binary.length) + binary : binary;
-    });    
+    const addZero = (n, s) => {
+        return '0'.repeat(n - s.length) + s;
+    }
     
-    arr1 = convertBintoDec(arr1);
-    arr2 = convertBintoDec(arr2);
-    
-    return arr1.map((num, i) => {
-        let res = '';
-        for(let j = 0; j < n; j++) {
-            res += (arr1[i][j] === '0' && arr2[i][j] === '0') ? ' ' : '#';
-        }
-        return res;
-    })
+    return arr1.map((v, i) => addZero(n, (v | arr2[i]).toString(2)).replace(/1|0/g, a => +a ? '#' : ' '));
 }
+
+
