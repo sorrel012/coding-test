@@ -9,9 +9,6 @@ function solution(a, b) {
         6: 'SAT'
     }
     
-    let date = new Date();
-    date.setYear(2016);
-    date.setMonth(a-1);
-    date.setDate(b);
+    let date = new Date(2016, a-1, b);
     return day[date.getDay()];
 }
