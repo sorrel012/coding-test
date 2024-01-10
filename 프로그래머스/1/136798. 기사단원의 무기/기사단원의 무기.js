@@ -1,4 +1,4 @@
-function countDivisors(num) {
+function getDivisors(num) {
     const numbers = new Array(num+1).fill(0);
     for (let i = 1; i <= num; i++) {
         for (let j = i; j <= num; j += i) {
@@ -9,7 +9,7 @@ function countDivisors(num) {
 }
 
 function solution(number, limit, power) {
-    const divisors = countDivisors(number);
+    const divisors = getDivisors(number);
     let answer = 0;
     
     for (let i = 1; i <= number; i++) {
