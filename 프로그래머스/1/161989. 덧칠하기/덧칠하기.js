@@ -1,14 +1,11 @@
-function solution(n, m, section) {
+function solution(n, m, sections) {
     let answer = 0;
-    let i = 0;
-    while (i < section.length) {
-        let end = section[i] + m - 1;
-        answer++;
-
-        while (i < section.length && section[i] <= end) {
-            i++;
+    let painted = 0;
+    for(let section of sections) {
+        if(painted < section) {
+            answer++;
+            painted = section+m-1;
         }
     }
-
     return answer;
 }
