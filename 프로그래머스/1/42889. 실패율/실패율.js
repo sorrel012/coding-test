@@ -1,20 +1,19 @@
 function solution(N, stages) {
-    let stageScores = new Array(N+2).fill(0);
-    for(let stage of stages) {
-        for(let i = 1; i <= stage; i++) {
-            stageScores[i]++;
+    let stageReached = new Array(N+1).fill(0);
+    let stageFailed = new Array(N+1).fill(0);
+       
+    for (let stage of stages) {
+        for (let j = 1; j <= stage; j++) {
+            stageReached[j]++;
         }
+        stageFailed[stage]++;
     }
-    stageScores.pop();
     
-    let fail = new Array(N+2).fill(0);
-    for(let stage of stages) {
-        fail[stage]++;
+    let failRates = [];
+    for (let i = 1; i <= N; i++) {
+        let rate = stageReached[i] > 0 ? stageFailed[i] / stageReached[i] : 0;
+        failRates.push([i, rate]);
     }
-    fail.pop();
     
-    let failRatio = stageScores.map((v, i) => [i, fail[i]/v]);       
-    failRatio.shift();
-    
-    return failRatio.sort((a, b) => b[1] - a[1]).map(v => v[0]);
+    return failRates.sort((a, b) => b[1] - a[1]).map(v => v[0]);
 }
