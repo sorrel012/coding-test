@@ -1,19 +1,16 @@
 function solution(keymap, targets) {
-    return targets.map(target => {
-        let cnt = 0;
-        let isPossible = true;
-
-        for (let char of target) {
-            let keyPresses = keymap.map(key => key.indexOf(char) + 1).filter(v => v > 0);
-
-            if (keyPresses.length === 0) {
-                isPossible = false;
-                break;
-            } else {
-                cnt += Math.min(...keyPresses);
-            }
-        }
-
-        return isPossible ? cnt : -1;
-    });
+    const answer = [];
+    const map = {}
+    
+    for (let keys of keymap) {
+        [...keys].forEach((char, i) => {
+            map[char] = map[char] < i+1 ? map[char] : i+1;
+        });
+    }
+    
+    for (let target of targets) {
+        answer.push([...target].reduce((acc, cur) => acc += map[cur], 0) || -1)
+    }
+    
+    return answer;
 }
