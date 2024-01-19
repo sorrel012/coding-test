@@ -1,16 +1,12 @@
 function solution(participant, completion) {
     let names = new Map();
 
-    for (let name of participant) {
-        if (names.has(name)) {
-            names.set(name, names.get(name) + 1);
-        } else {
-            names.set(name, 1);
-        }
-    }
+    for (let i = 0; i < participant.length; i++) {
+        let a = participant[i], 
+            b = completion[i];
 
-    for (let name of completion) {
-        names.set(name, names.get(name) - 1);
+        names.set(a, (names.get(a) || 0) + 1);
+        names.set(b, (names.get(b) || 0) - 1);
     }
 
     for (let [name, count] of names) {
