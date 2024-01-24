@@ -8,9 +8,8 @@ function solution(ingredient) {
 
         if (stack.length >= 4) { 
             let lastFourIngredients = stack.slice(-4).join('');
-
             if (lastFourIngredients === order) {
-                stack.splice(stack.length - 4, 4);
+                stack.splice(-4);
                 answer++;
             }
         }
