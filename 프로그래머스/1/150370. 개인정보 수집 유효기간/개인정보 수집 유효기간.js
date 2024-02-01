@@ -5,13 +5,13 @@ function solution(today, terms, privacies) {
         return acc;
     }, {});
     
-    let [year, month, date] = today.split('.');
+    let [year, month, date] = today.split('.').map(Number);
     const now = new Date(year, month-1, date);
     
     let answer = [];
     privacies.forEach((v, i) => {
         let [privacyDate, privacyTerm] = v.split(' ');
-        [year, month, date] = privacyDate.split('.');
+        [year, month, date] = privacyDate.split('.').map(Number);
         let limit = new Date(year, month - 1, date);
         limit.setMonth(limit.getMonth() + term[privacyTerm]);
         
