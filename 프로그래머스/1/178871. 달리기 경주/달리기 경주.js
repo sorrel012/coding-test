@@ -11,8 +11,8 @@ function solution(players, callings) {
         players[rank-1] = name;        
         players[rank] = prevPlayerName;
         
-        ranks[prevPlayerName] = rank;
-        ranks[name] = rank - 1;
+        ranks[prevPlayerName]++;
+        ranks[name]--;
     });
     
     return players;
