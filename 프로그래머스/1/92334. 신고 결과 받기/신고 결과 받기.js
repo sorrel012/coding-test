@@ -1,30 +1,19 @@
-function solution(id_list, report, k) {    
-    let reportResult = {};
-    id_list.forEach(id => {
-        reportResult[id] = 0;
-    });
+function solution(id_list, report, k) {
+    let reports = [...new Set(report)].map(v => {return v.split(' ')});
     
-    reportSet = new Set(report);
-    report = [...reportSet];
+    let counts = new Map();
+    for (const ids of reports) {
+        counts.set(ids[1], counts.get(ids[1])+1 || 1)
+    }
     
-    report.forEach((v, i) => {
-        const [userId, reportId] = v.split(' ');
-        
-        reportResult[reportId] += 1;        
-        report[i] = [userId, reportId];        
-    });
-    
-    const bannedId = [];
-    for (let key in reportResult) {
-        if(reportResult[key] >= k) bannedId.push(key);
-    }    
-    
-    return id_list.map(name => {
-        let tmp = report.filter(v => v[0] === name).map(v => v[1]);
-        let cnt = 0;
-        for(let id of tmp) {
-            if(bannedId.includes(id)) cnt++;
+    let reportResult = new Map();
+    for(const ids of reports) {
+        if(counts.get(ids[1]) >= k) {
+            reportResult.set(ids[0], reportResult.get(ids[0])+1 || 1)
         }
-        return cnt;
-    })    
+    }
+    
+    let answer = id_list.map(id => reportResult.get(id) || 0);
+    
+    return answer;
 }
