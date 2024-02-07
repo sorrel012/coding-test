@@ -1,28 +1,16 @@
 function solution(bandage, health, attacks) {
-    const lastAttack = +attacks[attacks.length-1][0];
-    const attackTimes = attacks.map(v => +v[0]);
-    const maxHealth = health;
-    let continuous = 0;
-    
-    for(let i = 1; i <= lastAttack; i++) {
-        if(health <= 0) return -1;
-        
-        let index = attackTimes.indexOf(i);
-        
-        if(index !== -1) {
-            health -= attacks[index][1];
-            continuous = 0;
-        } else {
-            continuous++;
-            if(continuous === bandage[0]) {
-                health += bandage[1] + bandage[2];
-                continuous = 0;
-            } else if(health < maxHealth) {
-                health += bandage[1];
-            }
-            health = Math.min(health, maxHealth);
-        }
-    }
-    
-    return health <= 0 ? -1 : health ;
+  let currHealth = health;
+  let currAttackTime = 0;
+
+  for (let [attackTime, damage] of attacks) {
+    let diffTime = attackTime - currAttackTime - 1;
+    currHealth += diffTime * bandage[1] + Math.floor(diffTime / bandage[0]) * bandage[2];
+
+    if (currHealth > health) currHealth = health;
+    currHealth -= damage;
+    if (currHealth <= 0) return -1;
+    currAttackTime = attackTime;
+  }
+
+  return currHealth;
 }
