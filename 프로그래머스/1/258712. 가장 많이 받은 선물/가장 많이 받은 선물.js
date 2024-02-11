@@ -1,43 +1,69 @@
-function solution(friends, gifts) {
-    const len = friends.length;
-    const nameMap = new Map();
-    const giftTable = new Array(len).fill(0).map(_ => new Array(len).fill(0));
-    const rankInfo = new Array(len).fill(0);
-    const nextMonth = new Array(len).fill(0);
-
-    // 친구들 키 값 저장.
-    friends.forEach((name, idx) => {
-        nameMap.set(name, idx);
-    })
-    
-    // 선물 주고받은 내역 기록
-    gifts.forEach(info => {
-        const [from, to] = info.split(" ");
-        giftTable[nameMap.get(from)][nameMap.get(to)]++;
-    })
-
-    // 기록을 바탕으로 선물 지수 계산
-    for (let i=0; i<len; i++) {
-        rankInfo[i] = giftTable[i].reduce((acc, cur) => acc += cur, 0)
-        
-        for (let j=0; j<len; j++) {
-            rankInfo[i] -= giftTable[j][i];       
-        }
-    }
-    
-    // 다음 달 받을 선물 계산
-    for (let i=0; i<len; i++) {
-        for (let j=i+1; j<len; j++) {
-            if (i===j) continue;
-            if (giftTable[i][j] > giftTable[j][i]) nextMonth[i]++;
-            if (giftTable[i][j] < giftTable[j][i]) nextMonth[j]++;
-            if (giftTable[i][j] === giftTable[j][i]) {
-                if (rankInfo[i] > rankInfo[j]) nextMonth[i]++
-                if (rankInfo[i] < rankInfo[j]) nextMonth[j]++
+function initializeRecords(friends) {
+    let giftGiven = {};
+    let giftReceived = {};
+    friends.forEach(friend => {
+        giftGiven[friend] = {};
+        giftReceived[friend] = {};
+        friends.forEach(other => {
+            if (friend !== other) {
+                giftGiven[friend][other] = 0;
+                giftReceived[friend][other] = 0;
             }
-        }
-    }
-    
-    // 최댓값 반환
-    return Math.max(...nextMonth)
+        });
+    });
+    console.log(giftGiven,giftReceived)
+    return { giftGiven, giftReceived };
+}
+
+function updateGiftRecords(gifts, giftGiven, giftReceived) {
+    gifts.forEach(gift => {
+        const [giver, receiver] = gift.split(' ');
+        giftGiven[giver][receiver]++;
+        giftReceived[receiver][giver]++;
+    });
+
+}
+
+function calculateGiftBalance(friends, giftGiven, giftReceived) {
+    let giftBalance = {};
+    friends.forEach(friend => {
+        giftBalance[friend] = Object.values(giftReceived[friend]).reduce((a, b) => a + b, 0) - 
+                              Object.values(giftGiven[friend]).reduce((a, b) => a + b, 0);
+    });
+    console.log(giftBalance)
+    return giftBalance;
+}
+
+function predictNextMonthGifts(friends, giftGiven, giftReceived, giftBalance) {
+    let nextMonthGifts = {};
+    friends.forEach(friend => nextMonthGifts[friend] = 0);
+
+    friends.forEach(giver => {
+        friends.forEach(receiver => {
+            if (giver !== receiver) {
+                if (giftGiven[giver][receiver] > giftReceived[giver][receiver]) {
+                    nextMonthGifts[giver]++;
+                } else if (giftGiven[giver][receiver] === giftReceived[giver][receiver]) {
+                    let giverGiftBalance = Object.values(giftGiven[giver]).reduce((a, b) => a + b, 0) - 
+                                           Object.values(giftReceived[giver]).reduce((a, b) => a + b, 0);
+                    let receiverGiftBalance = Object.values(giftGiven[receiver]).reduce((a, b) => a + b, 0) - 
+                                              Object.values(giftReceived[receiver]).reduce((a, b) => a + b, 0);
+                    if (giverGiftBalance > receiverGiftBalance) {
+                        nextMonthGifts[giver]++;
+                    }
+                }
+            }
+        });
+    });
+    return nextMonthGifts;
+}
+
+function solution(friends, gifts) {
+    let { giftGiven, giftReceived } = initializeRecords(friends);
+    updateGiftRecords(gifts, giftGiven, giftReceived);
+    console.log(giftGiven)
+    let giftBalance = calculateGiftBalance(friends, giftGiven, giftReceived);
+
+    let nextMonthGifts = predictNextMonthGifts(friends, giftGiven, giftReceived, giftBalance);
+    return Math.max(...Object.values(nextMonthGifts));
 }
