@@ -1,21 +1,10 @@
 function solution(s){
-    let stack = [];
-    let answer = true;
-    
-    [...s].forEach(v => {
-        if(v === '(') {
-            stack.push('(');
-        } else {
-            if(stack[stack.length-1] === '(') {
-                stack.pop();
-            } else {
-                answer = false;
-            }
+    let cum = 0
+    for (let paren of s) {
+        cum += paren === '('? 1: -1
+        if(cum < 0) {
+            return false
         }
-        
-    })
-    
-    if(stack.length !== 0) answer = false;
-    
-    return answer;
+    }
+    return cum === 0? true: false;
 }
