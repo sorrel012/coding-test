@@ -1,18 +1,11 @@
 function solution(s) {
-    let convertCnt = 0;
-    let zeroCnt = 0;
-    let newS = [...s]
+    let answer = [0,0];
     
-    while(true) {
-        if(newS.length === 1 && newS[0] === '1') break;
-        
-        let zero = newS.filter(num => num === '0').length;
-        zeroCnt += zero;           
-        
-        newS = [...newS.filter(num => num === '1').length.toString(2)];        
-        
-        convertCnt++;    
+    while(s.length > 1) {
+        answer[0]++;
+        answer[1] += (s.match(/0/g)||[]).length;
+        s = s.replace(/0/g, '').length.toString(2);
     }
     
-    return [convertCnt, zeroCnt];
+    return answer;
 }
