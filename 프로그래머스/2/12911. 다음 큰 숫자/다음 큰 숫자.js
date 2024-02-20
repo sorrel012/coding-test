@@ -1,14 +1,7 @@
-function solution(n) {   
-    let binaryN = [...n.toString(2)].filter(v => v === '1').length; 
-    let index = n+1;
-    
-    while(true) {
-        answer = index.toString(2);
-        if([...answer.toString(2)].filter(v => v === '1').length === binaryN) {
-            return index;
-        }
-        index++;
-    }
-    
-    return answer;
+function solution(n) {
+    let rightMostZeroFlip = n + (n & -n);
+    let nextHigherOneBit = n ^ rightMostZeroFlip; 
+    nextHigherOneBit = (nextHigherOneBit / (n & -n)) >> 2; 
+    let result = rightMostZeroFlip | nextHigherOneBit; 
+    return result;
 }
