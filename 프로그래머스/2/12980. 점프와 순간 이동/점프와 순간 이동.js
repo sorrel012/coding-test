@@ -1,14 +1,7 @@
-function solution(n) {
-    let answer = 0 ;
+function solution(n){
+    if(n === 1) return 1;
     
-    while(n > 0) {
-        if(n % 2 !== 0) {
-            answer++;
-            n--;
-        } else {
-            n /= 2;
-        }
-    }
+    const nArr = Array.from(n.toString(2));
     
-    return answer;
+    return nArr.reduce((acc,curr) => (+acc) + (+curr));
 }
