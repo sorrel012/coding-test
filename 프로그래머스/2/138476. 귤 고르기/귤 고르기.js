@@ -8,12 +8,11 @@ function solution(k, tangerine) {
 
     const sortedTanerines = Object.values(tangerineSizes).sort((a, b) => b - a);
 
-    let totalCount = 0;
-    for (let count of sortedTanerines) {
-        totalCount += count;
+    for (const tangerineCnt of sortedTanerines) {
         answer++;
-        if (totalCount >= k) break; 
+        if (k > tangerineCnt) k -= tangerineCnt;
+        else break;
     }
-
+    
     return answer;
 }
