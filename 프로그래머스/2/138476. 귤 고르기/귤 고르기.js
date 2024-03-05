@@ -1,18 +1,19 @@
 function solution(k, tangerine) {
-    const sizeCount = {};
+    let answer = 0;
+    const tangerineSizes = {};
+    
     tangerine.forEach(size => {
-        sizeCount[size] = (sizeCount[size] || 0) + 1;
+        tangerineSizes[size] = (tangerineSizes[size] || 0) + 1;
     });
 
-    const sortedCounts = Object.values(sizeCount).sort((a, b) => b - a);
+    const sortedTanerines = Object.values(tangerineSizes).sort((a, b) => b - a);
 
     let totalCount = 0;
-    let typeCount = 0;
-    for (let count of sortedCounts) {
+    for (let count of sortedTanerines) {
         totalCount += count;
-        typeCount++;
+        answer++;
         if (totalCount >= k) break; 
     }
 
-    return typeCount;
+    return answer;
 }
