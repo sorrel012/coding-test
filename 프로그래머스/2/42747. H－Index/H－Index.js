@@ -1,17 +1,9 @@
 function solution(citations) {
-    let h = 0;
-    let len = citations.length;
+     citations.sort((a, b) => b - a);
     
-    for(let i = len; i >= 0; i--) {
-        let quotation = citations.filter(value => value >= i).length;
-        
-        console.log(i, quotation)
-        
-        if(quotation >= i) {
-            h = i;
-            break;
-        }
-    }    
-    
-    return h;
+     let i = 0;
+     while(i+1 <= citations[i]){
+         i++;
+     }
+     return i;
 }
