@@ -1,21 +1,16 @@
 function solution(progresses, speeds) {
-    let answer = [];    
-    let dueDates = progresses.map((progress, i) => Math.ceil((100 - progress) / speeds[i]));
-    
-    let deploymentDueDate = dueDates[0]; 
-    let deploymentCnt = 1; 
-    
-    for (let i = 1; i < dueDates.length; i++) {
-        if (dueDates[i] <= deploymentDueDate) {
-            deploymentCnt++;
+    let answer = [0];    
+    let dueDates = progresses.map((progress, i) => Math.ceil((100 - progress) / speeds[i]));    
+    let maxDate = dueDates[0];
+
+    for(let i = 0, j = 0; i < dueDates.length; i++){
+        if(dueDates[i] <= maxDate) {
+            answer[j] += 1;
         } else {
-            answer.push(deploymentCnt);
-            deploymentCnt = 1; 
-            deploymentDueDate = dueDates[i]; 
+            maxDate = dueDates[i];
+            answer[++j] = 1;
         }
     }
-    
-    answer.push(deploymentCnt);
     
     return answer;
 }
