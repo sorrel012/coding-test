@@ -1,39 +1,20 @@
 function solution(k, dungeons) {
+    const dungeonLen = dungeons.length;
+    const visited = new Array(dungeonLen).fill(0);
     let answer = 0;
-    let allCases = getPermutations(dungeons);
-    
-    for(const dungeonCase of allCases) {
-        let curr = k;
-        let cnt = 0;
-        for(const [least, reduce] of dungeonCase) {
-            if(curr >= least) {
-                cnt++;
-                curr -= reduce;
-            } else {
-                break;
-            }
-        }     
-        answer = Math.max(answer, cnt);
-    }    
-    
-    return answer;
-}
 
-function getPermutations(arr) {
-    if (arr.length === 0) return [[]];
-    
-    const first = arr[0];
-    const rest = arr.slice(1);
-    
-    const permsWithoutFirst = getPermutations(rest);
-    const allPermutations = [];
-  
-    permsWithoutFirst.forEach(perm => {        
-        for (let i = 0; i <= perm.length; i++) {
-            const permWithFirst = [...perm.slice(0, i), first, ...perm.slice(i)];
-            allPermutations.push(permWithFirst);
+    function dfs(k, cnt) {
+        answer = Math.max(cnt, answer);
+
+        for (let i = 0; i < dungeonLen; i++){
+            if (k >= dungeons[i][0] && !visited[i]) {
+                visited[i] = 1;
+                dfs(k - dungeons[i][1], cnt + 1);
+                visited[i] = 0;
+            }
         }
-    });
-    
-    return allPermutations;
+    }
+
+    dfs(k, 0);
+    return answer;
 }
