@@ -16,18 +16,15 @@ function solution(str1, str2) {
         }
     }
     
-    let intersect = 0;    
-    let sum = str1List.length + str2List.length;
-    for(const str of str1List) {
-        let index = str2List.indexOf(str);
-        if(index > -1) {
-            intersect++;
-            str2List.splice(index, 1);
-        }
-    }
+    const set = new Set([...str1List, ...str2List]);
+    let union = 0;
+    let intersection = 0;
     
-    sum -= intersect;
-    
-    return sum === 0 && intersect === 0 ? 65536 : Math.floor((intersect / sum) * 65536);
-    
+    set.forEach(str => {
+        const has1 = str1List.filter(v => v === str).length;
+        const has2 = str2List.filter(v => v === str).length;
+        union += Math.max(has1, has2);
+        intersection += Math.min(has1, has2);
+    })
+    return union === 0 ? 65536 : Math.floor(intersection / union * 65536);
 }
