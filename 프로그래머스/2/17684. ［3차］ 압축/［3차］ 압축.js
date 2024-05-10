@@ -1,22 +1,32 @@
 function solution(msg) {
-    const dict = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').reduce((dict, curr, i) => {
-        dict[curr] = i + 1;
-        return dict;
-    }, {});
-    dict.newIndex = 27;
+    let answer = [];
+    let dictionary = {};
     
-    const answer = [];
-    for(let i = 0, j = 0; i < msg.length; i = j){
-        j = msg.length;
-        
-        let longest = '';        
-        while(dict[(longest = msg.substring(i, j))] === undefined) --j;
-        
-        answer.push(dict[longest]);
-        
-        if (j < msg.length) { 
-            dict[longest + msg[j]] = dict.newIndex++;
+    for (let i = 0; i < 26; i++) {
+        dictionary[String.fromCharCode(i + 65)] = i + 1;
+    }
+    let nextIndex = 27;
+    let index = 0;
+
+    while (index < msg.length) {
+        let longestStr = '';
+        for (let len = 1; index + len - 1 < msg.length; len++) {
+            let current = msg.substring(index, index + len);
+            if (dictionary[current] !== undefined) {
+                longestStr = current;
+            } else {
+                break;
+            }
         }
+        answer.push(dictionary[longestStr]);
+                
+        index += longestStr.length;
+        
+        if (index < msg.length) {
+            let newStr = longestStr + msg[index];
+            dictionary[newStr] = nextIndex++;
+        }
+        
     }
 
     return answer;
