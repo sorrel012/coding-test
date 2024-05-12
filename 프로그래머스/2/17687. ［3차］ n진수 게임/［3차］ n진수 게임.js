@@ -1,19 +1,11 @@
 function solution(n, t, m, p) {
-    let answer = '';
-    let numbers = [];  
+    let tubeTurn = new Array(t).fill(0).map((_, i) => i*m+p-1);
+    let line = '';
+    const max = m*t + p;
     
-    let index = 0;
-    while (numbers.length < t * m) {
-        const str = index.toString(n).toUpperCase();
-        for(const char of str) {
-            numbers.push(char);
-        }  
-        index++;
+    for (let i = 0; line.length <= max; i++) {
+        line += i.toString(n);
     }
     
-    for(let i = p-1; i < t*m; i += m) {
-        answer += numbers[i];
-    }    
-    
-    return answer.slice(0, t);
+    return tubeTurn.map(a => line[a]).join('').toUpperCase();
 }
