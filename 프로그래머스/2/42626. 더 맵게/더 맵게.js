@@ -1,38 +1,86 @@
-function solution(scoville, K) {
-    let answer = 0;
-    let newScoville = [];
-
-    scoville.sort((a,b)=>a-b);
-
-    let left = 0; 
-    let right = 0;
-
-    while((scoville.length-left+newScoville.length-right) >= 2 && (scoville[left] < K || newScoville[right] < K)) {
-        let origin1;
-        let origin2;
-        let new1;
-        let new2;
-
-        if(left < scoville.length) origin1 = scoville[left];
-        if(left+1 < scoville.length) origin2 = scoville[left+1];
-        if(right < newScoville.length) new1 = newScoville[right];
-        if(right+1 < newScoville.length) new2 = newScoville[right+1];
-
-
-        if(newScoville.length===0 || right >= newScoville.length || (origin2!==undefined && origin2 <= new1)) {
-            left += 2;
-            newScoville.push(origin1+origin2*2);
-        } else if(left >= scoville.length || new2!==undefined && new2 <= origin1 ) {
-            right += 2;
-            newScoville.push(new1+new2*2);
-        } else {
-            left += 1;
-            right += 1;
-            origin1 < new1 ? newScoville.push(origin1+new1*2):newScoville.push(new1+origin1*2);
-        }
-
-        answer += 1;
+class MinHeap {
+    constructor() {
+        this.heap = [];
     }
 
-    return (scoville[left] < K || newScoville[right] < K) ? -1 : answer;
+    size() {
+        return this.heap.length;
+    }
+
+    swap(idx1, idx2){
+        [this.heap[idx1], this.heap[idx2]] = [this.heap[idx2], this.heap[idx1]];
+        return this.heap;
+    }
+
+    getParentIdx(childIdx){
+        return Math.floor((childIdx-1) / 2);
+    }
+
+    getLeftChildIdx(parentIdx){
+        return parentIdx*2 + 1;
+    }
+
+    getRightChildIdx(parentIdx){
+        return parentIdx*2 + 2;
+    }
+
+    heapPop(){
+        const heapSize = this.size();
+        if (!heapSize) return null;
+        if (heapSize === 1) return this.heap.pop();
+
+        const value = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown();
+        return value;
+    }
+
+    heapPush(value){
+        this.heap.push(value);
+        this.bubbleUp();
+
+        return this.heap;
+    }
+
+    bubbleUp() {
+        let child = this.size() - 1;
+        let parent = this.getParentIdx(child);
+
+        while(this.heap[child] < this.heap[parent]){
+            this.swap(child, parent);
+            child = parent;
+            parent = this.getParentIdx(parent);
+        }
+    }
+
+    bubbleDown() {
+        let parent = 0;
+        let leftChild = this.getLeftChildIdx(parent);
+        let rightChild = this.getRightChildIdx(parent);
+
+        while((leftChild <= this.size()-1 && this.heap[leftChild] < this.heap[parent]) || (rightChild <= this.size()-1 && this.heap[rightChild] < this.heap[parent])){
+
+            if (rightChild <= this.size()-1 && this.heap[leftChild] > this.heap[rightChild]){
+                this.swap(parent, rightChild);
+                parent = rightChild;
+            }else {
+                this.swap(parent, leftChild);
+                parent = leftChild;
+            }
+            leftChild = this.getLeftChildIdx(parent);
+            rightChild = this.getRightChildIdx(parent);
+        }     
+    }
+}
+
+function solution(scoville, K) {
+    let count = 0;
+    const heap = new MinHeap();
+    scoville.forEach(el => heap.heapPush(el));
+
+    while(heap.heap[0] < K && heap.size() > 1){
+        count++;
+        heap.heapPush(heap.heapPop() + heap.heapPop()*2);
+    }
+    return heap.heap[0] >= K ? count : -1;
 }
