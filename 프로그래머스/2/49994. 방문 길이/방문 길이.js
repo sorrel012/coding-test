@@ -19,6 +19,7 @@ function solution(dirs) {
         
         const path1 = `${curr[0]},${curr[1]},${nextCoordinate[0]},${nextCoordinate[1]}`;
         const path2 = `${nextCoordinate[0]},${nextCoordinate[1]},${curr[0]},${curr[1]}`;
+        
         visitedPaths.add(path1);
         visitedPaths.add(path2);        
         
