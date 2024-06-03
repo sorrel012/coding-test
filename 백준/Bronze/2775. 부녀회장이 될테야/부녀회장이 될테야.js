@@ -17,7 +17,7 @@ rl.on('line', (line) => {
     currIndex++;
 }).on('close', () => {
     const sum = (k, n) => {
-        let residents = Array.from({ length: n }, (_, i) => i + 1);
+        let residents = Array.from({ length: n }, (_, i) => i+1);
 
         for (let floor = 1; floor <= k; floor++) {
             for (let room = 1; room < n; room++) {
@@ -25,12 +25,12 @@ rl.on('line', (line) => {
             }
         }
 
-        return residents[n - 1];
+        return residents[n-1];
     };
 
     for (let i = 0; i < testCases; i++) {
-        const k = input[i * 2];
-        const n = input[i * 2 + 1];
+        const k = input[i*2];
+        const n = input[i*2+1];
 
         console.log(sum(k, n));
     }
