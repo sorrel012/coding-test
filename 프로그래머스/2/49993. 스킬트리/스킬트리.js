@@ -1,23 +1,13 @@
 function solution(skill, skill_trees) {
-    let answer = 0;    
-    
-    for (const skills of skill_trees) {
+    const isCorrect = (item) => {        
         let skillOrder = skill.split('');
-        let valid = true;
-        
-        for (const s of skills) {
-            if (skillOrder.includes(s)) {
-                if (s !== skillOrder[0]) {
-                    valid = false;
-                    break;
-                } else {
-                    skillOrder.shift();
-                }
-            }
+        for (let i = 0; i < item.length; i++) {
+            if (!skill.includes(item[i])) continue;
+            if (item[i] === skillOrder.shift()) continue;
+            return false;
         }
-        
-        if (valid) answer++;
+        return true;
     }
-    
-    return answer;
+
+    return skill_trees.filter(isCorrect).length;
 }
