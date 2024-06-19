@@ -18,18 +18,18 @@ rl.on('line', (line) => {
 }).on('close', () => {
     const answer = [];
     const stack = [];
-    let current = 1;
+    let currentNum = 1;
     
     for (let i = 0; i < n; i++) {
-        const target = input[i];
+        const targetNum = input[i];
         
-        while (current <= target) {
-            stack.push(current);
+        while (currentNum <= targetNum) {
+            stack.push(currentNum);
             answer.push('+');
-            current++;
+            currentNum++;
         }
         
-        if (stack[stack.length - 1] === target) {
+        if (stack[stack.length - 1] === targetNum) {
             stack.pop();
             answer.push('-');
         } else {
@@ -38,7 +38,6 @@ rl.on('line', (line) => {
         }
     }
     
-    console.log(answer.join('\n'));
-    
+    console.log(answer.join('\n'));    
     process.exit(); 
 });
