@@ -1,49 +1,42 @@
 function solution(m, n, board) {
-    board = board.map(row => row.split(''));
-    
-    
-    while (true) {
-        let toRemove = new Set();
+    board = board.map(v => v.split(''));
 
-        for (let i = 0; i < m-1; i++) {
-            for (let j = 0; j < n-1; j++) {
-                let block = board[i][j];
-                if (block &&
-                    block === board[i][j+1] &&
-                    block === board[i+1][j] &&
-                    block === board[i+1][j+1]) {
-                    toRemove.add(`${i},${j}`);
-                    toRemove.add(`${i},${j+1}`);
-                    toRemove.add(`${i+1},${j}`);
-                    toRemove.add(`${i+1},${j+1}`);
+    while (true) {
+        let founded = [];
+
+        // 찾기
+        for (let i = 1; i < m; i++) {
+            for (let j = 1; j < n; j++) {
+                const block = board[i][j];
+                if (block && block === board[i][j-1] && block === board[i-1][j-1] && block === board[i-1][j]) {
+                    founded.push([i, j]);
                 }
             }
         }
 
-        if (toRemove.size === 0) break;
+        if (! founded.length) return [].concat(...board).filter(v => ! v).length;
 
-        toRemove.forEach(position => {
-            const [i, j] = position.split(',').map(Number);
-            board[i][j] = null;
+        // 부수기
+        founded.forEach(a => {
+            board[a[0]][a[1]] = 0;
+            board[a[0]][a[1]-1] = 0;
+            board[a[0]-1][a[1]-1] = 0;
+            board[a[0]-1][a[1]] = 0;
         });
 
-        for (let j = 0; j < n; j++) {
-            let emptyRow = m - 1;
-            for (let i = m - 1; i >= 0; i--) {
-                if (board[i][j] !== null) {
-                    [board[i][j], board[emptyRow][j]] = [board[emptyRow][j], board[i][j]];
-                    emptyRow--;
+        // 재정렬
+        for (let i = m - 1; i > 0; i--) {
+            if (! board[i].some(v => ! v)) continue;
+
+            for (let j = 0; j < n; j++) {
+                for (let k = i - 1; k >= 0 && ! board[i][j]; k--) {
+                    if (board[k][j]) {
+                        board[i][j] = board[k][j];
+                        board[k][j] = 0;
+                        break;
+                    }
                 }
             }
         }
     }
-
-    let answer = 0;
-    board.forEach(row => {
-        row.forEach(cell => {
-            if (cell === null) answer++;
-        });
-    });
-
-    return answer;
 }
