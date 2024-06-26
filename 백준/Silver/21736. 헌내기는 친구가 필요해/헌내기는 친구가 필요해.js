@@ -24,40 +24,33 @@ rl.on('line', (line) => {
     }
 
     const directions = [
-        [1, 0],
-        [-1, 0],
-        [0, 1],
-        [0, -1]
+        [1, 0], 
+        [-1, 0], 
+        [0, 1], 
+        [0, -1] 
     ];
-     let queue = [[startRow, startCol]];
-    let visited = Array.from(Array(n), () => Array(m).fill(false));
-    visited[startRow][startCol] = true;
 
-    let peopleCount = 0;
+    let peopleCnt = 0;
+    let visited = Array.from(Array(n), () => Array(m).fill(0));
 
-    while (queue.length > 0) {
-        const [currentRow, currentCol] = queue.shift();
+    const dfs = (row, col) => {
+        if (row < 0 || row >= n || col < 0 || col >= m || !!visited[row][col] || campus[row][col] === 'X') {
+            return;
+        }
+
+        visited[row][col] = 1;
+
+        if (campus[row][col] === 'P') {
+            peopleCnt++;
+        }
 
         for (const [dRow, dCol] of directions) {
-            const newRow = currentRow + dRow;
-            const newCol = currentCol + dCol;
-
-            if (newRow >= 0 && newRow < n && newCol >= 0 && newCol < m && !visited[newRow][newCol] && campus[newRow][newCol] !== 'X') {
-                visited[newRow][newCol] = true;
-                queue.push([newRow, newCol]);
-
-                if (campus[newRow][newCol] === 'P') {
-                    peopleCount++;
-                }
-            }
+            dfs(row + dRow, col + dCol);
         }
-    }
+    };
 
-    if (peopleCount === 0) {
-        console.log('TT');
-    } else {
-        console.log(peopleCount);
-    }
-    
-    process.exit();    
+    dfs(startRow, startCol);
+    console.log(peopleCnt === 0 ? 'TT' : peopleCnt);
+
+    process.exit();
 });
