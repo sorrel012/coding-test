@@ -30,12 +30,6 @@ rl.on('line', (line) => {
                 break;
             }
         }
-        if (targetX !== -1) break; // 목표 지점을 찾으면 더 이상 탐색하지 않음
-    }
-    
-    if (targetX === -1) {
-        console.error("Error: No target point (2) found in the input.");
-        process.exit(1);
     }
     
     const distances = Array.from(Array(n), () => Array(m).fill(-1));
@@ -56,17 +50,22 @@ rl.on('line', (line) => {
         }
     }
     
+    const answer = [];
     for(let i = 0; i < n; i++) {
         const resultLine = [];
         for(let j = 0; j < m; j++) {
             if(input[i][j] === 0) {
                 resultLine.push(0);
+            } else if (distances[i][j] === -1 && input[i][j] === 1) {
+                resultLine.push(-1);
             } else {
                 resultLine.push(distances[i][j]);
             }
         }
-        console.log(resultLine.join(' '));
+        answer.push(resultLine.join(' '));
     }
+    
+    console.log(answer.join('\n'));
     
     process.exit();
 });
