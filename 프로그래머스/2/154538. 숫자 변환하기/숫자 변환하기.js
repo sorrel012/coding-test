@@ -1,36 +1,19 @@
 function solution(x, y, n) {
-    let answer = -1;    
-    let queue = [[y, 0]];
-    let visited = new Set();
-    
-    while(queue.length > 0) {
-        const [currNum, currCnt] = queue.shift();
-        
-        if(currNum === x) {
-            answer = currCnt;
-            break;
-        } 
-        
-        if(currNum > x) {
-            const minus = currNum - n;
-            const two = currNum / 2;
-            const three = currNum / 3;
-
-            if (minus >= x && !visited.has(minus)) {
-                queue.push([minus, currCnt + 1]);
-                visited.add(minus);
-            }
-            if (Number.isInteger(two) && two >= x && !visited.has(two)) {
-                queue.push([two, currCnt + 1]);
-                visited.add(two);
-            }
-            if (Number.isInteger(three) && three >= x && !visited.has(three)) {
-                queue.push([three, currCnt + 1]);
-                visited.add(three);
-            }
-        }
-        
+  if (x === y) return 0;
+  const dp = {};
+  dp[x] = 0;
+  let data = [x];
+  while (data.length) {
+    const newData = [];
+    for (const d of data) {
+      for (const e of [d + n, d * 2, d * 3]) {
+        if (e > y || dp[e]) continue;
+        if (e === y) return dp[d] + 1;
+        dp[e] = dp[d] + 1;
+        newData.push(e);
+      }
     }
-    
-    return answer;
+    data = newData;
+  }
+  return -1;
 }
