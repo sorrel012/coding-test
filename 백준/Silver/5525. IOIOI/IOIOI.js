@@ -11,24 +11,31 @@ rl.on('line', (line) => {
 }).on('close', () => {
     const n = +input[0];
     const m = +input[1];
-    const targetStr = input[2]
-    let patternStr = ''
-    for(let i = 0; i < 2*n+1; i++) {
-        if(i % 2 === 0) {
-            patternStr += 'I';
+    const s = input[2];
+
+    let result = 0;
+    let count = 0;
+    let i = 0;
+
+    while (i < m - 1) {
+        if (s[i] === 'I' && s[i + 1] === 'O') {
+            count = 0;
+            while (i < m - 1 && s[i] === 'I' && s[i + 1] === 'O') {
+                count++;
+                i += 2;
+                if (i < m && s[i] === 'I') {
+                    if (count >= n) {
+                        result++;
+                    }
+                } else {
+                    break;
+                }
+            }
         } else {
-            patternStr += 'O';
+            i++;
         }
     }
-    
-    let answer = 0;
-    const regex = new RegExp(patternStr);
-    const length = patternStr.length;
-    for(let i = 0; i <= m-length; i++) {
-        const subStr = targetStr.substr(i, length);        
-        if(subStr.match(regex)) answer++;
-    }
-    
-    console.log(answer);
+
+    console.log(result);
     process.exit();
 });
