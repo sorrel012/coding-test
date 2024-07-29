@@ -1,19 +1,17 @@
 const readline = require('readline');
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
+    input: process.stdin
 });
 
 let t = 0;
-let currTestCase = 0;
+let currLine = 0;
 let cases = [];
 let currentCase = null;
 
 rl.on('line', (line) => {
-    if (currTestCase === 0) {
+    if (currLine === 0) {
         t = +line;
-        currTestCase++;
+        currLine++;
     } else {
         if (!currentCase) {
             let [m, n, k] = line.split(' ').map(Number);
@@ -24,8 +22,8 @@ rl.on('line', (line) => {
             if (currentCase.cabbages.length === currentCase.k) {
                 cases.push(currentCase);
                 currentCase = null;
-                currTestCase++;
-                if (currTestCase > t) {
+                currLine++;
+                if (currLine > t) {
                     solve();
                     rl.close();
                 }
@@ -35,23 +33,22 @@ rl.on('line', (line) => {
 });
 
 function solve() {
-    for (let i = 0; i < cases.length; i++) {
-        let { m, n, k, cabbages } = cases[i];
+    for (const currentCase  of cases) {
+        let { m, n, k, cabbages } = currentCase;
 
-        let visited = new Array(m).fill(null).map(() => new Array(n).fill(0));
+        let visited = Array.from({length: m}, () => new Array(n).fill(0));
+        let cnt = 0;
 
-        let count = 0;
-
-        for (let j = 0; j < k; j++) {
-            let [x, y] = cabbages[j];
+        for (let i = 0; i < k; i++) {
+            let [x, y] = cabbages[i];
 
             if (!visited[x][y]) {
-                count++;
+                cnt++;
                 dfs(x, y, visited, cabbages, m, n);
             }
         }
 
-        console.log(count);
+        console.log(cnt);
     }
 }
 
