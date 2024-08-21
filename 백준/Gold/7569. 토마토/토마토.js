@@ -46,7 +46,7 @@ rl.on('line', (line) => {
     let answer = 0;
     
     while (front < queue.length) {
-        const nextQueue = [];
+        let isExist = false;
         const queueLength = queue.length;
         for (let i = front; i < queueLength; i++) {
             const [z, y, x] = queue[i];
@@ -56,13 +56,14 @@ rl.on('line', (line) => {
                 const nx = x + dx;
                 if (nz >= 0 && nz < h && ny >= 0 && ny < n && nx >= 0 && nx < m && input[nz][ny][nx] === 0) {
                     input[nz][ny][nx] = 1;
-                    nextQueue.push([nz, ny, nx]);
+                    queue.push([nz, ny, nx]);
+                    isExist = true;
                 }
             }
         }
-        if (nextQueue.length > 0) {
-            answer++;
-            queue.push(...nextQueue);
+        if (isExist) {
+            answer++;      
+            ixExit = false;      
         }
         front = queueLength;
     }
